@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>NHK for School 動画選択</title>
+</head>
+<body>
+  <h2>学年を選択してください</h2>
+  <form action="/videos" method="get">
+    <select name="grade">
+      <option th:each="g : ${grades}" th:value="${g}" th:text="${g}">学年</option>
+    </select>
+    <button type="submit">表示</button>
+  </form>
+</body>
+</html>

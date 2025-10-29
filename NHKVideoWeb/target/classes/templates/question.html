@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>4択クイズ</title>
+    <style>
+        body { font-family: sans-serif; margin: 30px; }
+        button { display: block; margin: 10px 0; padding: 10px 15px; font-size: 1em; cursor: pointer; }
+        #result { font-weight: bold; margin-top: 20px; font-size: 1.2em; }
+    </style>
+</head>
+<body>
+<h1 th:text="${question}"></h1>
+
+<div th:each="choice, iterStat : ${choices}">
+    <button th:onclick="'checkAnswer(' + ${iterStat.index + 1} + ')'"
+            th:text="${iterStat.index + 1} + '. ' + ${choice}"></button>
+</div>
+
+<div id="result"></div>
+
+<script th:inline="javascript">
+    const correctAnswer = [[${answer}]];
+
+    function checkAnswer(num) {
+        const result = document.getElementById('result');
+        if (num === correctAnswer) {
+            result.innerHTML = "⭕ 正解！";
+            result.style.color = "green";
+        } else {
+            result.innerHTML = "❌ 不正解… 正解は " + correctAnswer + " 番 です。";
+            result.style.color = "red";
+        }
+    }
+</script>
+
+<a href="javascript:history.back()">← 戻る</a>
+</body>
+</html>

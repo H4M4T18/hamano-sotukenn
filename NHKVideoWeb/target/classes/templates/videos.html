@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${grade} + ' の動画一覧'">動画一覧</title>
+</head>
+<body>
+  <h2 th:text="${grade} + ' の動画一覧'"></h2>
+  <ul>
+    <li th:each="v : ${videos}">
+      <a th:href="${v.url}" th:text="${v.title}" target="_blank"></a>
+    </li>
+  </ul>
+  <a href="/">← 学年選択に戻る</a>
+</body>
+</html>
